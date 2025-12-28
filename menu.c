@@ -52,23 +52,22 @@ void enter() {
 
 void menu_game(){
     int option;
-    printf("1.map1\n2.map2\n3.log out\n(Please enter from 1 to 3):");
+    printf("lets play!\n1.map1\n2.map2\n3.log out\n(Please enter from 1 to 3):");
     scanf("%d",&option);
 
     switch (option)
     {
     case 1:
         map1();
-        draw_map1();
         break;
     
     case 2:
         map2();
-        draw_map2();
         break;
 
     case 3:
         enter();
+        menu_game();
         break;
     
     default:
