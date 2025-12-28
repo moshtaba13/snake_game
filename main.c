@@ -6,8 +6,9 @@
 int main()
 {
     printf("welcome to snake game!\n");
+
     enter();
     menu_game();
-    
+
     return 0;
 }
