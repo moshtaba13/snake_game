@@ -21,12 +21,12 @@ void keyboard() {
         switch (getch())
         {
         case 'w':
-            y++;
+            y--;
             key = 1;
             break;
 
         case 's':
-            y--;
+            y++;
             key = 2;
             break;
         
@@ -49,11 +49,11 @@ void keyboard() {
         switch (key)
         {
         case 1:
-            y++;
+            y--;
             break;
  
         case 2:
-            y--;
+            y++;
             break;
         
         case 3:
@@ -71,10 +71,9 @@ void keyboard() {
 }
 
 void snake_movment() {
-    snakex[0] = x;
-    snakey[0] = y;
 
     if (x == applex && y == appley) {
+
         if (apple == 1) 
             score += 3;
         
@@ -85,12 +84,18 @@ void snake_movment() {
         
         which_apple();
         place_apple();
+
     }
 
-    for (int i = 1; i < length; i++) {
-        snakex[i] = snakex[i + 1];
-        snakey[i] = snakey[i + 1];
+  
+    for (int i = length - 1; i > 0; i--) {
+        snakex[i] = snakex[i - 1];
+        snakey[i] = snakey[i - 1];
     }
+
+
+    snakex[0] = x;
+    snakey[0] = y;
 }
 
 int draw_snake(int i, int j) {
