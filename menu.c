@@ -1,6 +1,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 
 #include "menu.h"
 #include "map.h"
@@ -14,6 +16,8 @@ void enter() {
 
    printf("please enter your username:");
     scanf("%s", username);
+
+    system("cls");
 
   
     if (fp) {
@@ -29,6 +33,8 @@ void enter() {
     if (found) {
         printf("this account already exist. please log in.\npassword:");
         scanf("%s", password);
+        
+        system("cls");
 
         if (strcmp(password, p) == 0) {
             printf("Login successfully! \n");
@@ -42,6 +48,8 @@ void enter() {
         printf("please sign up.\nset password:");
         scanf("%s", password);
 
+        system("cls");
+
         fp = fopen("users.txt", "a");
         fprintf(fp, "%s %s\n", username, password);
         fclose(fp);
@@ -54,6 +62,8 @@ void menu_game(){
     int option;
     printf("lets play!\n1.map1\n2.map2\n3.log out\n(Please enter from 1 to 3):");
     scanf("%d",&option);
+
+    system("cls");
 
     switch (option)
     {
