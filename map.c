@@ -2,13 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <windows.h>
 
 #include "map.h"
+#include "snake.h"
 
-# define HEIGHT 20
-# define WIDTH 40
-
-int applex, appley;
+int applex, appley, apple;
 
 char map[HEIGHT][WIDTH];
 
@@ -52,36 +51,35 @@ void map2() {
     }
 }
 
-int which_apple() {
+void which_apple() {
     int chance = rand() % 10 ;
 
     if (chance == 5)
-        return 1;        
+        apple = 1;      
     
     else
-        return 0;
+        apple = 0;
 }
 
 void place_apple() {
-    applex = rand() % WIDTH;
-    appley = rand() % HEIGHT;
-
-    if (applex == 0 )
+    do {
         applex = rand() % WIDTH;
-    
-    if (appley == 0)
         appley = rand() % HEIGHT;
-
+    } 
+    while (map[appley][applex] == '#');
 }
 
 void draw_maps() {
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
-            if (map[i][j] == '#')
+            if (draw_snake(i,j)) 
+                printf("0");
+
+            else if (map[i][j] == '#')
                 printf("█");
             
             else if (i == appley && j == applex) {
-                if (which_apple())
+                if (apple == 1)
                     printf("@");
                 else
                     printf("*");
@@ -92,6 +90,12 @@ void draw_maps() {
         }
         printf("\n");
     }
+}
+
+
+void reset() {
+    COORD pos = {0, 0};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
 
