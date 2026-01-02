@@ -4,6 +4,7 @@
 
 #include "snake.h"
 #include "map.h"
+#include "menu.h"
 
 #define MAX 100
 
@@ -13,6 +14,7 @@ y = HEIGHT / 2;
 
 int length = 1, key = 3, score = 0;
 
+int gameover = 1;
 
 int snakex[MAX], snakey[MAX];
 
@@ -38,6 +40,11 @@ void keyboard() {
         case 'a':
             x--;
             key = 4;
+            break;
+
+        case 'x':
+            
+            menu_maps();
             break;
         
         default:
@@ -93,9 +100,18 @@ void snake_movment() {
         snakey[i] = snakey[i - 1];
     }
 
-
     snakex[0] = x;
     snakey[0] = y;
+
+    for (int i = 1; i < length; i++) {
+        if (snakex[i] == x && snakey[i] == y)
+            gameover = 0;
+    }
+    
+    if (map[y][x] == '#') {
+        gameover = 0;
+    }
+
 }
 
 int draw_snake(int i, int j) {
@@ -104,5 +120,6 @@ int draw_snake(int i, int j) {
             return 1;
         }
     }
+
     return 0;
 }

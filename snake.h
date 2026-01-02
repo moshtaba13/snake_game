@@ -6,6 +6,7 @@ void keyboard(void);
 void snake_movment(void); 
 int draw_snake(int ,int );
 
-extern int length;
+
+extern int gameover, score;
 
 #endif
