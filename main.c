@@ -16,19 +16,30 @@ int main()
 
     enter();
     menu_game();
-    snake_movment();
+    menu_maps();
     which_apple();
     place_apple();
-
-   while (1)
-    {
+    snake_movment();
+    
+    while (gameover){
         keyboard();
         snake_movment();
         reset();
-        draw_maps();
-        Sleep(150);
+        if (gameover)
+            draw_maps();
+        
+        else {
+            system("cls");
+            printf("========GAMEOVER========\n");
+            printf("score:%d",score);
+            update_score(score);
 
+        }
+        Sleep(150);
     }
+
+
+    
 
     return 0;
 }
